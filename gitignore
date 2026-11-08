@@ -1,0 +1,23 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.eggs/
+build/
+dist/
+
+# Compiled CUDA extension artifacts
+*.pyd
+*.so
+*.obj
+*.exp
+*.lib
+*.pdb
+
+# Logs and temp
+*.log
+comfy_check.log
+
+# Archives for releases
+*.rar
+*.zip
