@@ -1,0 +1,6 @@
+# Minimal dependencies to build / run flash-attn-v100.
+# torch is expected to be already installed (torch 2.6.0+cu124 was verified)
+# and is intentionally NOT listed here so pip does not replace your CUDA build.
+packaging
+ninja
+einops
