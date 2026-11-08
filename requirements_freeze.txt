@@ -1,0 +1,5 @@
+# Exact environment snapshot of the verified Windows build.
+# NOTE: this is the verified core; regenerate the full list on your machine with:
+#   <venv>\Scripts\python.exe -m pip freeze > requirements_freeze.txt
+torch==2.6.0+cu124
+# Python 3.12, CUDA Toolkit 12.4, MSVC 14.38 toolchain on Windows 10 x64
