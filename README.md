@@ -11,7 +11,7 @@ This repository contains *only* Windows build fixes and tooling.
 | Component | Version |
 |---|---|
 | Upstream commit | tag `26.10` (`0ababf8`), also applies cleanly to `main` @ `838ec64` (2026-11-08) |
-| OS | Windows 10 x64 (build 22631) |
+| OS | Windows 11 x64 (build 22631) |
 | Python | 3.12 |
 | PyTorch | 2.6.0+cu124 |
 | CUDA Toolkit | 12.4 |
