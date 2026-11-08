@@ -1,0 +1,30 @@
+ПАМЯТКА: что было сломано и что мы правили
+==========================================
+
+База: ai-bond/flash-attention-v100, тег 26.10 (коммит 0ababf8).
+Проверено также на свежем main (838ec64, 08.11.2026) — патч ложится без конфликтов.
+
+Проблема: проект собирался под Linux; нативная сборка под Windows (MSVC) падала.
+
+1) __tanhf (include/mat_mul.h, 2 места, ветки IS_SOFTCAP)
+   MSVC не знает __tanhf как device-функцию. Заменили на стандартный tanhf.
+
+2) ushort не определён (setup.py)
+   Под MSVC typedef ushort из CUDA-заголовков недоступен.
+   Добавили флаг nvcc: -Dushort=unsigned short.
+
+3) Порог CUDA 12.9 (setup.py)
+   Автор требует torch/cuda >= 12.9. У нас torch 2.6.0+cu124 — сборка и
+   smoke-тесты проходят. Порог снижен до 12.4.
+
+4) MAX_JOBS=4 (build_v100.bat)
+   Полный параллелизм периодически роняет nvcc/линкер на Windows.
+
+5) comfy-kitchen: отсутствует import typing (fix_kitchen2.py)
+   Пакет comfy-kitchen (в составе ComfyUI) не импортируется под Windows:
+   в ряде файлов нет import typing. Скрипт добавляет его во все файлы пакета.
+   ПОВТОРЯТЬ ПОСЛЕ КАЖДОГО ОБНОВЛЕНИЯ ComfyUI / comfy-kitchen.
+
+Подключение к ComfyUI: специальный скрипт запуска НЕ нужен.
+Start.bat обычный; модуль flash_attn_v100 ставится в venv сборки и
+подхватывается автоматически через реестр backend'ов comfy-kitchen.
